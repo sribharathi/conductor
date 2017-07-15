@@ -31,7 +31,9 @@ spec:
     app:  dynomite
   type:  NodePort
   ports:
-  - port:  8102
-    targetPort: 8102
-  - port:  22122
-    targetPort: 22122
+  - name:  dyno
+    port:  8102
+    targetPort:  8102
+  - name:  dyno-quorum
+    port:  22122
+    targetPort:  22122
