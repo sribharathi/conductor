@@ -15,7 +15,7 @@ spec:
       - name: conductor-ui
         image: sribharathi/conductor:ui
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
           protocol: TCP
         env:
           - name:  WF_SERVER
@@ -31,5 +31,5 @@ spec:
   type:  NodePort
   ports:
   - name:  cd-ui
-    port:  8080
-    targetPort:  8080
+    port:  5000
+    targetPort:  5000
