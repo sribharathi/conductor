@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  labels:
+    run: elasticsearch
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:2.4
+        ports:
+        - containerPort: 9300
+          protocol: TCP
+        - containerPort: 9200
+          protocol: TCP
