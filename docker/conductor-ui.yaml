@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: conductor-ui
+  labels:
+    run: conductor-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: conductor-ui
+    spec:
+      containers:
+      - name: conductor-ui
+        image: sribharathi/conductor:ui
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+          - name:  WF_SERVER
+            value:  http://conductor-server-svc:8080/api/
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  conductor-ui-svc
+spec:
+  selector:
+    run:  conductor-ui
+  type:  NodePort
+  ports:
+  - name:  cd-ui
+    port:  8080
+    targetPort:  8080
