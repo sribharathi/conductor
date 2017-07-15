@@ -34,6 +34,16 @@ spec:
   - name:  dyno
     port:  8102
     targetPort:  8102
-  - name:  dyno-quorum
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  dynomite-quo-svc
+spec:
+  selector:
+    app:  dynomite
+  type:  NodePort
+  ports:
+  - name:  dyno
     port:  22122
     targetPort:  22122
