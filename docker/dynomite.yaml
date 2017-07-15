@@ -28,22 +28,12 @@ metadata:
   name:  dynomite-svc
 spec:
   selector:
-    app:  dynomite
+    run:  dynomite
   type:  NodePort
   ports:
   - name:  dyno
     port:  8102
     targetPort:  8102
----
-kind: Service
-apiVersion: v1
-metadata:
-  name:  dynomite-quo-svc
-spec:
-  selector:
-    app:  dynomite
-  type:  NodePort
-  ports:
-  - name:  dyno
+  - name:  dyno-nonquorum
     port:  22122
     targetPort:  22122
