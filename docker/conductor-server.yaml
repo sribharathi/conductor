@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: conductor-server
+  labels:
+    run: conductor-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: conductor-server
+    spec:
+      containers:
+      - name: conductor-server
+        image: sribharathi/conductor:server
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+          - name:  CONFIG_PROP
+            value:  config.properties
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  conductor-server-svc
+spec:
+  selector:
+    run:  dynomite
+  type:  NodePort
+  ports:
+  - name:  cd-server
+    port:  8080
+    targetPort:  8080
