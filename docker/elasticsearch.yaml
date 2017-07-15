@@ -23,10 +23,13 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name:  elasticsearch
+  name:  elasticsearch-svc
 spec:
   selector:
     app:  elasticsearch
   type:  NodePort
   ports:
   - port:  9200
+    targetPort: 9200
+  - port:  9300
+    targetPort: 9300

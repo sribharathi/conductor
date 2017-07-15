@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dynomite
+  labels:
+    run: dynomite
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: dynomite
+    spec:
+      containers:
+      - name: dynomite
+        image: v1r3n/dynomite
+        ports:
+        - containerPort: 8102
+          protocol: TCP
+        - containerPort: 22122
+          protocol: TCP
+        - containerPort: 22222
+          protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  dynomite-svc
+spec:
+  selector:
+    app:  dynomite
+  type:  NodePort
+  ports:
+  - port:  8102
+    targetPort: 8102
+  - port:  22122
+    targetPort: 22122
