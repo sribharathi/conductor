@@ -27,7 +27,7 @@ metadata:
   name:  conductor-server-svc
 spec:
   selector:
-    run:  dynomite
+    run:  conductor-server
   type:  NodePort
   ports:
   - name:  cd-server
